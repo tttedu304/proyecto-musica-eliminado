@@ -1,2 +1,2 @@
-let { session } = require("./lib/newSession.js");
-let { play } = require("./lib/commands/play");
+let { session } = require("./lib/inicialization/newSession.js");
+
