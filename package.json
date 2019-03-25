@@ -1,6 +1,6 @@
 {
   "name": "mybot-music",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823",
   "main": "src/index.js",
   "scripts": {
@@ -27,5 +27,11 @@
   "bugs": {
     "url": "https://github.com/tttedu304/DiscordMusic/issues"
   },
-  "homepage": "https://github.com/tttedu304/DiscordMusic#readme"
+  "homepage": "https://github.com/tttedu304/DiscordMusic#readme",
+  "dependencies": {
+    "ffmpeg": "0.0.4",
+    "youtube-dl": "^1.13.1",
+    "yt-search": "^0.4.1",
+    "ytdl-core": "^0.29.1"
+  }
 }
