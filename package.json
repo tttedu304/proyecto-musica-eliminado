@@ -1,31 +1,31 @@
 {
-  "name": "tttedu-special-package-number-5",
+  "name": "discord-music",
   "version": "1.0.0",
   "description": "Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823",
-  "main": "./src/index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tttedu304/DiscordDj.git"
+    "url": "git+https://github.com/tttedu304/DiscordMusic.git"
   },
   "keywords": [
-    "discord-dj",
-    "dj-discord",
-    "discord",
-    "dj",
-    "music",
     "discord-music",
-    "discord-bot",
+    "mybot",
+    "discord",
+    "music",
+    "js",
     "bot",
-    "DiscordDj",
-    "discorddj"
+    "discord-dj",
+    "discord-bot",
+    "bot-discord",
+    "music-discord"
   ],
   "author": "tttedu304",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tttedu304/DiscordDj/issues"
+    "url": "https://github.com/tttedu304/DiscordMusic/issues"
   },
-  "homepage": "https://github.com/tttedu304/DiscordDj#readme"
+  "homepage": "https://github.com/tttedu304/DiscordMusic#readme"
 }
