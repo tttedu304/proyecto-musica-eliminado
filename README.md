@@ -1,4 +1,4 @@
-# DiscordMusic
+# MyBot Music
 
 Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823
 
@@ -6,7 +6,7 @@ Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios pued
 
 ##### DEFINIR PACKAGE
 ```javascript
-let DiscordDj = require("discord-music");
+let DiscordDj = require("mybot-music");
 let Discord = require("discord.js");
 let client = new Discord.Client();
 ```
