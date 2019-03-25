@@ -1,2 +1,2 @@
-let { session } = require("./lib/invocar.js");
+let { session } = require("./lib/newSession.js");
 
