@@ -1,0 +1,29 @@
+{
+  "name": "discord-dj",
+  "version": "1.0.0",
+  "description": "Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tttedu304/discord-dj.git"
+  },
+  "keywords": [
+    "discord-dj",
+    "dj-discord",
+    "discord",
+    "dj",
+    "music",
+    "discord-music",
+    "discord-bot",
+    "bot"
+  ],
+  "author": "tttedu304",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tttedu304/discord-dj/issues"
+  },
+  "homepage": "https://github.com/tttedu304/discord-dj#readme"
+}
