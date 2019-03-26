@@ -60,12 +60,3 @@ module.exports.Rep = class {
 		}
 	}
 }
-/*
-module.exports.rep = async(client, userID, serverID, con) => {
-    if (!client.music[serverID]) return;
-    let dispatcher = con.playStream(ytdl("https://www.youtube.com/watch?v=" + client.music[serverID].queue[0].vid, {
-        "filter": "audioonly",
-        "quality": "highestaudio"
-    }));
-};
-*/
