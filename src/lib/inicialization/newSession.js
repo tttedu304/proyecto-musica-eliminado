@@ -1,8 +1,10 @@
 /*
    # Inicializa el objeto client.music
 */
-module.exports.session = class {
-    constructor(){
-        return {};
-    }
-};
+module.exports = class session {
+	constructor() {
+		console.log(
+			'Inicializando mybot-music Por tu amigo tttedu304 y Aiden, Disfruta!'
+		)
+	}
+}
