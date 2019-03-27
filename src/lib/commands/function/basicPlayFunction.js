@@ -8,7 +8,7 @@ module.exports.Rep = class {
 		this.music = this.client.music[serverID]
 	}
 
-	rep(connection, message) {
+	async rep(connection, message) {
 		if (!this.music) {
 			return
 		}
