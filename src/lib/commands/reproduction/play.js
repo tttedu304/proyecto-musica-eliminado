@@ -11,7 +11,7 @@ module.exports.play = async (client, message, busqueda) => {
 	let { newSongObjectUrl } = require('../function/newSongObjectUrl.js')
 
 	/* Requiere otras funciones para recoleccion de data */
-	let { getVideoData } = require("../function/getVideoData.js");
+	let { getVideoData } = require('../function/getVideoData.js')
 
 	/* Define IDs de autor y servidor */
 	let userid = message.author.id
@@ -57,23 +57,29 @@ module.exports.play = async (client, message, busqueda) => {
 
 						client.music[message.guild.id].queue.push(song)
 						client.music[message.guild.id].cur = song
-						return getVideoData(err, v);
+						return getVideoData(err, v)
 					}
 				)
 			})
 		} else {
-			ytsh(busqueda.join(" ").normalize("NFD").replace(/[\u0300-\u036f]/g, ""), async (err, v) => {
-				if (err)
-					throw new Error(
-						'Ocurrio un error buscando la cancion de el link proporcionado.'
-					)
+			ytsh(
+				busqueda
+					.join(' ')
+					.normalize('NFD')
+					.replace(/[\u0300-\u036f]/g, ''),
+				async (err, v) => {
+					if (err)
+						throw new Error(
+							'Ocurrio un error buscando la cancion de el link proporcionado.'
+						)
 
-				let song = new newSongObjectUrl(v, message)
+					let song = new newSongObjectUrl(v, message)
 
-				client.music[message.guild.id].queue.push(song);
-				client.music[message.guild.id].cur = song;
-				return getVideoData(err, v);
-			})
+					client.music[message.guild.id].queue.push(song)
+					client.music[message.guild.id].cur = song
+					return getVideoData(err, v)
+				}
+			)
 		}
 	}
 }
