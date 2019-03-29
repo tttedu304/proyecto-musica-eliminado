@@ -2,62 +2,34 @@ const ytdl = require('ytdl-core')
 /*
    # Funcion para reproducir música con tu bot
  */
-module.exports.Rep = class {
-	constructor(client, userID, serverID) {
-		this.client = client
-		this.userID = userID
-		this.music = this.client.music[serverID]
-	}
+module.exports.Rep = async (con, client, message) => {
+	let music = client.music[message.guild.id]
+	let dispatcher = con.playStream(
+		ytdl('https://www.youtube.com/watch?v=' + music.queue[0].vid, {
+			filter: 'audioonly',
+			quality: 'highestaudio',
+		})
+	)
+	music.dispatcher = dispatcher
+	music.actu = music.queue[1]
+	music.rep = true
+	music.dispatcher.setVolume(music.volume)
 
-	async rep(connection, message) {
-		if (!this.music) {
-			return
+	dispatcher.on('end', async () => {
+		if (!music) return
+		if (!music.repeat) {
+			music.queue.shift()
+			music.rep = false
+			music.actu = null
+			music.dispatcher = null
+			if (music.queue[0]) return rep(con)
+			if (!message.guild.voiceConnection) return
+			if (message.guild.voiceConnection && !music.queue[0] && !music.rep)
+				return message.member.voiceChannel.leave()
+		} else if (music.repeat) {
+			let again = music.queue.shift()
+			music.queue.push(again)
+			return rep(con)
 		}
-
-		const stream = ytdl(
-			`https://www.youtube.com/watch?v=${this.music.queue[0].vid}`,
-			{
-				filter: 'audioonly',
-				quality: 'highestaudio',
-			}
-		)
-		const dispatcher = connection.playStream(stream)
-		this.music.dispatcher = dispatcher
-		this.music.actu = this.music.queue[1]
-		this.music.rep = true
-		this.music.dispatcher.setVolume(this.music.volume)
-
-		dispatcher.on('end', this.onDispatcherEnd(message, connection))
-	}
-
-	onDispatcherEnd(message, connection) {
-		return () => {
-			if (!this.music) {
-				return
-			}
-			if (!this.music.repeat) {
-				this.music.queue.shift()
-				this.music.rep = false
-				this.music.actu = null
-				this.music.dispatcher = null
-				if (this.music.queue[0]) {
-					return rep(connection)
-				}
-				if (!message.guild.voiceConnection) {
-					return
-				}
-				if (
-					message.guild.voiceConnection &&
-					!this.music.queue[0] &&
-					!this.music.rep
-				) {
-					return message.member.voiceChannel.leave()
-				}
-			} else if (this.music.repeat) {
-				const again = this.music.queue.shift()
-				this.music.queue.push(again)
-				return rep(connection)
-			}
-		}
-	}
+	})
 }

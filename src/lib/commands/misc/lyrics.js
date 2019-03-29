@@ -1,23 +1,17 @@
 let Weez = require('weez')
 /*
    # Comando lyrics usando la API de Weez, no al c&p, si a weez
-   # Modo de uso:
-  if(command === "lyrics"){
-  let music = require("mybot-music");
-  if(!args[0]) return message.channel.send("No se proporciono ningun elemento para buscar")
-   	try{
-   		let song = await music.lyrics("llave de acceso Weez", args);
-    }catch(err){
-    //que hacer si no encuentra la canción
-    }
-  }
 */
-module.exports.lyrics = async (key, busqueda) => {
+module.exports.lyrics = async (client, busqueda, key) => {
+	let music = client.music[message.guild.id]
 	if (!key) throw new Error('La llave de acceso a Weez no ha sido especificada')
 	if (!busqueda)
 		throw new Error("No se ha proporcionado el parametro 'busqueda'")
-	if (!busqueda[0])
-		throw new Error('No se proporciono ningun elemento para buscar')
+	if (!busqueda[0] && music) {
+		busqueda = music.addedAs
+	} else if (!busqueda[0] && !music) {
+		throw new Error('No se proporciono ninguna cancion para buscar')
+	}
 	let weez = new Weez.WeezAPI(key)
 	let song = await weez.letra(busqueda.join(' '))
 	if (song.mensaje) throw new Error('No se encontro la canción proporcionada')
