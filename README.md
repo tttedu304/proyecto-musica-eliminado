@@ -96,5 +96,6 @@ if(message.content.startsWith("/resumir")){
 	}
 }
 ```
-
+## Se agregaran más comandos y funciones progresivamente, de momento, esto es la fase beta, Siguiente objetivo: Conseguir la informacion de los videos de las canciones para asi tener un embed
+# Si necesitan ayuda no duden en preguntar en MyBOT Team
 
