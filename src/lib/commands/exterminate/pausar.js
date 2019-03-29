@@ -9,7 +9,7 @@
 module.exports.pausar = async (client, message) => {
 	if (!client) throw new Error('Client no ha sido especificado')
 	if (!message) throw new Error('Message no ha sido especificado')
-	let music = client.music[message.guild.id];
+	let music = client.music[message.guild.id]
 	if (!music || !music.rep)
 		throw new Error('El bot no esta reproduciendo musica en el servidor.')
 	if (music.dispatcher.paused)
@@ -19,10 +19,7 @@ module.exports.pausar = async (client, message) => {
 		message.member.voiceChannel !== message.guild.me.voiceChannel
 	)
 		throw new Error('El bot y el usuario no estan en el mismo canal')
-	if (
-		!music.dispatcher.paused &&
-		music.rep
-	) {
+	if (!music.dispatcher.paused && music.rep) {
 		music.dispatcher.pause()
 	}
 }

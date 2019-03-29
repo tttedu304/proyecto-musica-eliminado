@@ -1,4 +1,4 @@
-const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core')
 /*
    # Funcion para reproducir música con tu bot
  */
