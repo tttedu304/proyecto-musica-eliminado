@@ -1,6 +1,6 @@
 # MyBot Music
 
-Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823
+Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823 y Aiden#1326
 
 ## COMO USAR?
 
@@ -78,6 +78,18 @@ if(message.content.startsWith("/lyrics")){
 if(message.content.startsWith("/leave")){
 	try {
 		await Music.leave(client, message)
+	}catch(err){
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
+}
+```
+##### Resume
+```javascript
+/* DENTRO DEL EVENTO MESSAGE*/
+if(message.content.startsWith("/resumir")){
+	try {
+		await Music.resume(client, message)
 	}catch(err){
 		console.log(err)
 		message.channel.send("Ocurrio un error")

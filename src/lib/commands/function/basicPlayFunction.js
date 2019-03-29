@@ -22,14 +22,14 @@ module.exports.Rep = async (con, client, message) => {
 			music.rep = false
 			music.actu = null
 			music.dispatcher = null
-			if (music.queue[0]) return rep(con)
+			if (music.queue[0]) return Rep(con, client, message)
 			if (!message.guild.voiceConnection) return
 			if (message.guild.voiceConnection && !music.queue[0] && !music.rep)
 				return message.member.voiceChannel.leave()
 		} else if (music.repeat) {
 			let again = music.queue.shift()
 			music.queue.push(again)
-			return rep(con)
+			return Rep(con)
 		}
 	})
 }

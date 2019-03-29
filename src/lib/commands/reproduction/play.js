@@ -16,26 +16,29 @@ module.exports.play = async (client, message, busqueda) => {
 	const { getVideoData } = require('../function/getVideoData.js')
 	const userid = message.author.id
 	const serverid = message.guild.id
+
+	if (!client.music[message.guild.id]) {
+		client.music[message.guild.id] = new playobject()
+	}
 	let music = client.music[message.guild.id]
 
 	if (!message.member.voiceChannel)
 		throw new Error(
 			'El miembro autor del mensaje no se encuentra actualmente en un canal de voz.'
 		)
-	if (!music) {
-		music = new playobject()
-	}
 
 	if (!busqueda[0] && !music.rep)
 		throw new Error(
 			'El miembro autor del mensaje no proporciono un termino de busqueda, y actualmente no se esta reproduciendo nada.'
 		)
 	if (music.rep) {
-		if (!busqueda[0])
+		if (!busqueda[0] && !music.dispatcher.paused)
 			throw new Error(
 				'El miembro autor del mensaje no proporciono un termino de busqueda.'
 			)
-
+		if (!busqueda[0] && music.dispatcher.paused) {
+			music.dispatcher.resume()
+		}
 		if (
 			busqueda[0].match(
 				/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/i
