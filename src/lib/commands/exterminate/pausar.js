@@ -9,9 +9,10 @@
 module.exports.pausar = async (client, message) => {
 	if (!client) throw new Error('Client no ha sido especificado')
 	if (!message) throw new Error('Message no ha sido especificado')
-	if (!client.music[message.guild.id] || !client.music[message.guild.id].rep)
+	let music = client.music[message.guild.id];
+	if (!music || !music.rep)
 		throw new Error('El bot no esta reproduciendo musica en el servidor.')
-	if (client.music[message.guild.id].dispatcher.paused)
+	if (music.dispatcher.paused)
 		throw new Error('La cancion actual ya esta pausada')
 	if (
 		!message.member.voiceChannel ||
@@ -19,9 +20,9 @@ module.exports.pausar = async (client, message) => {
 	)
 		throw new Error('El bot y el usuario no estan en el mismo canal')
 	if (
-		!client.music[message.guild.id].dispatcher.paused &&
-		client.music[message.guild.id].rep
+		!music.dispatcher.paused &&
+		music.rep
 	) {
-		client.music[message.guild.id].dispatcher.pause()
+		music.dispatcher.pause()
 	}
 }

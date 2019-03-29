@@ -1,3 +1,4 @@
+const ytdl = require('ytdl-core');
 /*
    # Funcion para reproducir música con tu bot
  */
@@ -22,7 +23,7 @@ module.exports.Rep = class {
 		)
 		const dispatcher = connection.playStream(stream)
 		this.music.dispatcher = dispatcher
-		this.music.actu = client.music[message.guild.id].queue[1]
+		this.music.actu = this.music.queue[1]
 		this.music.rep = true
 		this.music.dispatcher.setVolume(this.music.volume)
 

@@ -108,5 +108,5 @@ module.exports.play = async (client, message, busqueda) => {
 			)
 		}*/
 	}
-	new Rep(client, message.author.id, message.guild.id)
+	return new Rep(client, message.author.id, message.guild.id)
 }
