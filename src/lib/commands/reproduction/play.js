@@ -29,7 +29,7 @@ module.exports.play = async (client, message, busqueda) => {
 
 	/* Inicializa el objeto play */
 	if (!client.music[message.guild.id]) {
-		new playobject()
+		client.music[message.guild.id] = new playobject()
 	}
 
 	/* Condicionales para reproduccion de musica */
