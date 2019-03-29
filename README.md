@@ -6,7 +6,7 @@ Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios pued
 
 ##### DEFINIR PACKAGE
 ```javascript
-let DiscordDj = require("mybot-music");
+let Music = require("mybot-music");
 let Discord = require("discord.js");
 let client = new Discord.Client();
 ```
@@ -15,29 +15,74 @@ let client = new Discord.Client();
 
 ```javascript
 /* Dentro del evento ready */
-client.music = new DiscordDj.session();
+client.music = new Music.session();
 ```
 
 ### COMANDOS
 ##### Play
 ```javascript
 /* DENTRO DEL EVENTO MESSAGE */
-if(message.content.startsWith("/play")){
-    new DiscordDj.play(message.guild.id, message.author.id, args.join(" "), client);
+if(message.content.startsWith("/play")) {
+	try {
+
+		await Music.play(message.guild.id, message.author.id, args.join(" "), client);
+
+	} catch (err) {
+		
+		console.log(err)
+		message.channel.send("Un error ha ocurrido")
+		
+	}
 }
 ```
 ##### Pause
 ```javascript
 /* DENTRO DEL EVENTO MESSAGE */
 if(message.content.startsWith("/pause")){
-    new DiscordDj.pause(message.guild.id, message.author.id, client);
+	try{
+		await Music.pausar(client, message)
+	}catch(err){
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
 }
+
 ```
 ##### Skip
 ```javascript
 /* DENTRO DEL EVENTO MESSAGE */
-if(message.content.startsWith("/pause")){
-    new DiscordDj.skip(message.guild.id, message.author.id, client);
+if(message.content.startsWith("/skip")){
+	try {
+		await Music.skip(client, message)
+	}catch(err){
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
 }
 ```
+##### Lyrics
+```javascript
+/* DENTRO DEL EVENTO MESSAGE */
+if(message.content.startsWith("/lyrics")){
+	try {
+		await Music.lyrics(client, args, "Llave de acceso de Weez")
+	}catch(err){
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
+}
+```
+##### Leave
+```javascript
+/* DENTRO DEL EVENTO MESSAGE*/
+if(message.content.startsWith("/leave")){
+	try {
+		await Music.leave(client, message)
+	}catch(err){
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
+}
+```
+
 
