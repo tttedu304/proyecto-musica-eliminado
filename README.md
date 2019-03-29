@@ -25,7 +25,7 @@ client.music = new Music.session();
 if(message.content.startsWith("/play")) {
 	try {
 
-		await Music.play(message.guild.id, message.author.id, args.join(" "), client);
+		await Music.play(client, message, args);
 
 	} catch (err) {
 		
