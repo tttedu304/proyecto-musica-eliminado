@@ -58,21 +58,29 @@ module.exports.play = async (client, message, busqueda) => {
         /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/i
       )
     ) {
-      const { title } = await youtube.getInfo(busqueda[0]);
-      const video = await youtubeSearch(
-        title.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      );
+      try {
+        const { title } = await youtube.getInfo(busqueda[0]);
+        const video = await youtubeSearch(
+          title.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        );
+      } catch (err) {
+        throw new Error("El formato del video encontrado no cumple los requerimientos para poder reproducirse");
+      }
       const song = await newSongObjectUrl(video, message, busqueda);
       music.queue.push(song);
       music.cur = song;
       return song;
     } else {
-      const video = await youtubeSearch(
-        busqueda
-          .join(" ")
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-      );
+      try {
+        const video = await youtubeSearch(
+          busqueda
+            .join(" ")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+        );
+      } catch (err) {
+        throw new Error("El formato del video encontrado no cumple los requerimientos para poder reproducirse");
+      }
       const song = await newSongObjectUrl(video, message, busqueda);
       music.queue.push(song);
       music.cur = song;
@@ -84,7 +92,11 @@ module.exports.play = async (client, message, busqueda) => {
         /^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/
       )
     ) {
-      const videosInfo = await getInfo(busqueda[0]);
+      try {
+        const videosInfo = await getInfo(busqueda[0]);
+      } catch (err) {
+        throw new Error("El formato del video encontrado no cumple los requerimientos para poder reproducirse");
+      }
       const connection = await message.member.voiceChannel.join();
       await Rep(connection, client, message);
       return videosInfo.map(async video => {
@@ -99,10 +111,14 @@ module.exports.play = async (client, message, busqueda) => {
           /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/i
         )
       ) {
-        const { title } = await youtube.getInfo(busqueda[0]);
-        const video = await youtubeSearch(
-          title.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        );
+        try {
+          const { title } = await youtube.getInfo(busqueda[0]);
+          const video = await youtubeSearch(
+            title.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          );
+        } catch (err) {
+          throw new Error("El formato del video encontrado no cumple los requerimientos para poder reproducirse");
+        }
         const song = await newSongObjectUrl(video, message, busqueda);
         const connection = await message.member.voiceChannel.join();
         music.queue.push(song);
@@ -110,12 +126,16 @@ module.exports.play = async (client, message, busqueda) => {
         await Rep(connection, client, message);
         return song;
       } else {
-        const video = await youtubeSearch(
-          busqueda
-            .join(" ")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-        );
+        try {
+          const video = await youtubeSearch(
+            busqueda
+              .join(" ")
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+          );
+        } catch (err) {
+          throw new Error("El formato del video encontrado no cumple los requerimientos para poder reproducirse");
+        }
         const song = await newSongObjectUrl(video, message, busqueda);
         music.queue.push(song);
         music.cur = song;

@@ -2,7 +2,19 @@
 
 Un npm enfocado directamente a la comunidad de MyBot, para que los usuarios puedan crear un sistema de música de una manera muy sencilla, disfruten, por parte de su amigo tttedu304#7823 y Aiden#1326
 
+![Online Members](https://discordapp.com/api/guilds/312846399731662850/embed.png)
+![Version](https://img.shields.io/npm/v/mybot-music.svg?maxAge=3600)
+![Download](https://img.shields.io/npm/dt/mybot-music.svg)
+![License](https://img.shields.io/npm/l/mybot-music.svg)
+![Dependencies](https://david-dm.org/tttedu304/mybot-music.svg)
+![Build](https://api.travis-ci.org/tttedu304/mybot-music.svg)
+
 ## COMO USAR?
+##### DESCARGAR PACKAGE
+
+```
+npm i mybot-music
+```
 
 ##### DEFINIR PACKAGE
 ```javascript
