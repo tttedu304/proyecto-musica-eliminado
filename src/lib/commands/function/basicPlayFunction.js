@@ -2,7 +2,7 @@ const ytdl = require('ytdl-core')
 /*
    # Funcion para reproducir música con tu bot
  */
-module.exports.Rep = async (con, client, message) => {
+async function Rep(con, client, message) {
 	let music = client.music[message.guild.id]
 	let dispatcher = con.playStream(
 		ytdl('https://www.youtube.com/watch?v=' + music.queue[0].vid, {
@@ -33,3 +33,4 @@ module.exports.Rep = async (con, client, message) => {
 		}
 	})
 }
+module.exports.Rep = Rep;
