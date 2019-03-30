@@ -36,7 +36,7 @@ if(message.content.startsWith("/play")) {
 		addedAs: como fue agregada la cancion, esto es para la funcion lyrics
 		 */
 		let embed = new Discord.RichEmbed()
-		.setDescription(`Titulo de la cancion: ${song.title}, Duracion: ${somg.tmp}, Pedido por: <@${song.cid}>`)
+		.setDescription(`Titulo de la cancion: ${song.title}, Duracion: ${song.tmp}, Pedido por: <@${song.cid}>`)
 		message.channel.send(embed);
 	} catch (err) {
 		

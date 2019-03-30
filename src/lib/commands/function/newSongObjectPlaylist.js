@@ -1,7 +1,7 @@
 /*
    # Crea un objeto para la reproduccion de musica usando una playlist como base
  */
-module.exports.newSongObjectPlaylist = ([video], message, busqueda) => {
+module.exports.newSongObjectPlaylist = ({ videos: [video] }, message, busqueda) => {
 	const { videoId, timestamp, title, seconds } = video
 	return {
 		vid: videoId,

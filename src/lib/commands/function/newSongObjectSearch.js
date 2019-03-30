@@ -1,7 +1,7 @@
 /*
    # Crea un objeto para la reproduccion de musica usando el link como base
  */
-module.exports.newSongObjectSearch = ([video], message, busqueda) => {
+module.exports.newSongObjectSearch = ({ videos: [video] }, message, busqueda) => {
 	const { videoId, timestamp, title, seconds } = video
 	return {
 		vid: videoId,

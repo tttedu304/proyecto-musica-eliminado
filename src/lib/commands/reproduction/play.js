@@ -9,7 +9,7 @@ module.exports.play = async (client, message, busqueda) => {
 	const { playobject } = require('../../inicialization/newPlayObject.js')
 	const { newSongObjectUrl } = require('../function/newSongObjectUrl.js')
 	const {
-		newSongObjectPlaylist,
+		newSongObjectPlaylist
 	} = require('../function/newSongObjectPlaylist.js')
 	const { newSongObjectSearch } = require('../function/newSongObjectSearch.js')
 	const { Rep } = require('../function/basicPlayFunction.js')
@@ -128,7 +128,7 @@ module.exports.play = async (client, message, busqueda) => {
 							throw new Error('Ocurrio un error buscando la cancion: Nombre')
 						}
 
-						let song = new newSongObjectSearch(v, message, busqueda)
+						let song = await newSongObjectSearch(v, message, busqueda)
 						songData = song
 						let connection = await message.member.voiceChannel.join()
 						music.queue.push(song)
@@ -139,5 +139,5 @@ module.exports.play = async (client, message, busqueda) => {
 			}
 		}
 	}
-	return songData
+	return songData;
 }
