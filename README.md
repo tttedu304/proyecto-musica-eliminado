@@ -25,7 +25,6 @@ client.music = new Music.session();
 if(message.content.startsWith("/play")) {
 	try {
 
-<<<<<<< HEAD
 		let song = await Music.play(client, message, args);
 		/*Un texto de ejemplo para conseguir informacion del video
 		La funcion play devuelve este objeto
@@ -38,10 +37,7 @@ if(message.content.startsWith("/play")) {
 		 */
 		let embed = new Discord.RichEmbed()
 		.setDescription(`Titulo de la cancion: ${song.title}, Duracion: ${somg.tmp}, Pedido por: <@${song.cid}>`)
-=======
-		await Music.play(client, message, args);
->>>>>>> bce93fc871fdd26655679d80e111e0d942e18d89
-
+		message.channel.send(embed);
 	} catch (err) {
 		
 		console.log(err)
@@ -114,6 +110,6 @@ if(message.content.startsWith("/resumir")){
 	}
 }
 ```
-## Se agregaran más comandos y funciones progresivamente, de momento, esto es la fase beta, Siguiente objetivo: Conseguir la informacion de los videos de las canciones para asi tener un embed
+#### Se agregaran más comandos y funciones progresivamente, de momento, esto es la fase beta, Siguiente objetivo: Conseguir la informacion de los videos de las canciones para asi tener un embed
 # Si necesitan ayuda no duden en preguntar en MyBOT Team
 

@@ -51,7 +51,7 @@ module.exports.play = async (client, message, busqueda) => {
 						if (err) {
 							throw new Error('Ocurrio un error buscando la cancion: URL')
 						}
-						let song = new newSongObjectUrl(v, message)
+						let song = await newSongObjectUrl(v, message, busqueda)
 						songData = song
 						music.queue.push(song)
 						music.cur = song
@@ -68,7 +68,7 @@ module.exports.play = async (client, message, busqueda) => {
 					if (err) {
 						throw new Error('Ocurrio un error buscando la cancion: Nombre')
 					}
-					let song = new newSongObjectSearch(v, message, busqueda)
+					let song = await newSongObjectSearch(v, message, busqueda)
 					songData = song
 					music.queue.push(song)
 					music.cur = song
@@ -86,7 +86,7 @@ module.exports.play = async (client, message, busqueda) => {
 					throw new Error('Ocurrio un error buscando la cancion: Nombre')
 				}
 				for (const video of v) {
-					let song = new newSongObjectPlaylist(video, message)
+					let song = await newSongObjectPlaylist(video, message, busqueda)
 					songData = song
 					music.queue.push(song)
 					music.cur = song
@@ -108,7 +108,7 @@ module.exports.play = async (client, message, busqueda) => {
 								throw new Error('Ocurrio un error buscando la cancion: URL')
 							}
 
-							let song = new newSongObjectUrl(v, message)
+							let song = await newSongObjectUrl(v, message, busqueda)
 							songData = song
 							let connection = await message.member.voiceChannel.join()
 							music.queue.push(song)
