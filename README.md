@@ -25,7 +25,18 @@ client.music = new Music.session();
 if(message.content.startsWith("/play")) {
 	try {
 
-		await Music.play(message.guild.id, message.author.id, args.join(" "), client);
+		let song = await Music.play(client, message, args);
+		/*Un texto de ejemplo para conseguir informacion del video
+		La funcion play devuelve este objeto
+		vid: id del video,
+		tmp: duracion del video
+		tit: titulo del video
+		sec: segundos que dura el video
+		cid: el que pidio la cancion
+		addedAs: como fue agregada la cancion, esto es para la funcion lyrics
+		 */
+		let embed = new Discord.RichEmbed()
+		.setDescription(`Titulo de la cancion: ${song.title}, Duracion: ${somg.tmp}, Pedido por: <@${song.cid}>`)
 
 	} catch (err) {
 		
@@ -65,6 +76,9 @@ if(message.content.startsWith("/skip")){
 /* DENTRO DEL EVENTO MESSAGE */
 if(message.content.startsWith("/lyrics")){
 	try {
+		if(!args[0] && client.music[message.guild.id].rep){
+			args = client.music[message.guild.id].queue[0].addedAs.split(/ +/g)
+		}
 		await Music.lyrics(client, args, "Llave de acceso de Weez")
 	}catch(err){
 		console.log(err)
