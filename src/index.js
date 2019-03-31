@@ -13,4 +13,6 @@ const { leave } = require('./lib/commands/exterminate/leave.js')
 
 // Otros
 const { lyrics } = require('./lib/commands/misc/lyrics.js')
-module.exports = { session, Rep, pausar, skip, lyrics, play, leave, resume }
+const { queue } = require("./lib/commands/misc/queue.js")
+const { np } = require("./lib/commands/misc/np.js")
+module.exports = { session, Rep, pausar, skip, lyrics, play, leave, resume, queue, np }

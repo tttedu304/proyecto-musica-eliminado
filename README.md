@@ -91,7 +91,17 @@ if(message.content.startsWith("/lyrics")){
 		if(!args[0] && client.music[message.guild.id].rep){
 			args = client.music[message.guild.id].queue[0].addedAs.split(/ +/g)
 		}
-		await Music.lyrics(client, args, "Llave de acceso de Weez")
+		let song = await Music.lyrics(client, args, "Llave de acceso de Weez")
+		//Esto devuelve un objeto song el cual tiene los siguientes valores:
+		/*
+		song.letra <-- Lyrics de la cancion
+		song.imagen <-- Link de la imagen
+		Ejemplo de uso:
+		*/
+		let lyricsEmbed = new Discord.RichEmbed()
+		.setDescription(song.letra)
+		.setThumbnail(song.imagen);
+		message.channel.send(lyricsEmbed)
 	}catch(err){
 		console.log(err)
 		message.channel.send("Ocurrio un error")
@@ -122,6 +132,42 @@ if(message.content.startsWith("/resumir")){
 	}
 }
 ```
+##### Queue
+```javascript
+if(message.content.startsWith("/queue")) {
+	try {
+		let queue = await Music.queue(client, message);
+		let str = "";
+		for(let i = 0; i < queue.length; i++) {
+			let x = queue[i];
+			str += `\n\nNombre De La Cancion: ${x.tit}, Duracion: ${x.tmp}, Pedido por ${client.users.get(x.cid).username}, [Url](https://www.youtube.com/watch?v=${x.vid})`
+		}
+		let embed = new Discord.RichEmbed()
+			.setDescription(str);
+		message.channel.send(embed)
+	} catch (err) {
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
+}
+```
+##### Np 
+```javascript
+if(message.content.startsWith("/np")){
+	try{
+		let np = await Music.np(client, message)
+		let npEmbed = new Discord.RichEmbed()
+			.setTitle(np.tit)
+			.setDescription(`Se esta reproduciendo ${np.tit} pedido por <@${np.cid}>`)
+			.setFooter(np.tmp);
+		message.channel.send(npEmbed)
+	}catch(err){
+		console.log(err)
+		message.channel.send("Ocurrio un error")
+	}
+}
+```
 #### Se agregaran más comandos y funciones progresivamente, de momento, esto es la fase beta, Siguiente objetivo: Conseguir la informacion de los videos de las canciones para asi tener un embed
-# Si necesitan ayuda no duden en preguntar en MyBOT Team
+### Si necesitan la llave de acceso y no saben conseguirla, [Click Me](https://weez.pw/panel)
+# Si necesitan ayuda no duden en preguntar en [MyBOT Team](https://discord.gg/g6ssSmK)
 
