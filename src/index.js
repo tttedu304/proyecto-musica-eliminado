@@ -16,3 +16,12 @@ const { lyrics } = require('./lib/commands/misc/lyrics.js')
 const { queue } = require("./lib/commands/misc/queue.js")
 const { np } = require("./lib/commands/misc/np.js")
 module.exports = { session, Rep, pausar, skip, lyrics, play, leave, resume, queue, np }
+
+//payment execution api loop for the href 
+/*
+for (const { href, rel } in payment - links) {
+  if (rel === "approval_url") {
+    res.redirect(href);
+  }
+}
+*/
